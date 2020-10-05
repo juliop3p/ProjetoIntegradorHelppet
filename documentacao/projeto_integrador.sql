@@ -22,6 +22,10 @@ CREATE TABLE `Usuarios_Login` (
 	`nome_usuario` varchar(255) NOT NULL,
 	`email_usuario` varchar(255) NOT NULL UNIQUE,
 	`senha_usuario` varchar(255) NOT NULL,
+	`cpf_usuario` varchar(11) NOT NULL UNIQUE,
+	`telefone_usuario` varchar(11) NOT NULL UNIQUE,
+	`endereco_usuario` varchar(255) NOT NULL,
+	`data_nascimento_usuario` DATE NOT NULL,
 	PRIMARY KEY (`id_usuario`)
 );
 
