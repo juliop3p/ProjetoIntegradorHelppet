@@ -1,5 +1,7 @@
 package com.helppet.model;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,9 +30,21 @@ public class UsuarioModel {
 	@Column
 	@NotNull
 	private String senhaUsuario;
+	
+	@Column
+	private String cpfUsuario;
+	
+	@Column
+	private String telefoneUsario;
+	
+	@Column
+	private String enderecoUsuario;
+	
+	@Column
+	private Date dataNascimentoUsuario;
 
 	// Getters e Setters
-
+	
 	public Long getIdUsuario() {
 		return idUsuario;
 	}
@@ -61,6 +75,38 @@ public class UsuarioModel {
 
 	public void setSenhaUsuario(String senhaUsuario) {
 		this.senhaUsuario = senhaUsuario;
+	}
+
+	public String getCpfUsuario() {
+		return cpfUsuario;
+	}
+
+	public void setCpfUsuario(String cpfUsuario) {
+		this.cpfUsuario = cpfUsuario;
+	}
+
+	public String getTelefoneUsario() {
+		return telefoneUsario;
+	}
+
+	public void setTelefoneUsario(String telefoneUsario) {
+		this.telefoneUsario = telefoneUsario;
+	}
+
+	public String getEnderecoUsuario() {
+		return enderecoUsuario;
+	}
+
+	public void setEnderecoUsuario(String enderecoUsuario) {
+		this.enderecoUsuario = enderecoUsuario;
+	}
+
+	public Date getDataNascimentoUsuario() {
+		return dataNascimentoUsuario;
+	}
+
+	public void setDataNascimentoUsuario(Date dataNascimentoUsuario) {
+		this.dataNascimentoUsuario = dataNascimentoUsuario;
 	}
 
 }
