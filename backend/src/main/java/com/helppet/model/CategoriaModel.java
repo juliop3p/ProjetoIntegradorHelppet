@@ -72,7 +72,7 @@ public class CategoriaModel {
 		this.animalCategoria = animalCategoria;
 	}
 
-	//RELACIONAMENTO
+	// RELACIONAMENTO
 	public List<ProdutoModel> getProduto() {
 		return produto;
 	}
@@ -81,6 +81,4 @@ public class CategoriaModel {
 		this.produto = produto;
 	}
 
-	
-	
 }
