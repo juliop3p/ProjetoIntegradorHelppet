@@ -1,5 +1,20 @@
 package com.helppet.repository;
 
-public interface CategoriaRepository {
+import java.util.List;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.helppet.model.CategoriaModel;
+
+public interface CategoriaRepository extends JpaRepository<CategoriaModel, Long> {
+	
+	//secaoCategoria
+	public List<CategoriaModel> findAllBySecaoCategoriaContainingIgnoreCase(String secaoCategoria);
+	
+	//subsecaoCategoria
+	public List<CategoriaModel> findAllBySubSecaoCategoriaContainingIgnoreCase(String subSecaoCategoria);
+	
+	//animalCategoria
+	public List<CategoriaModel> findAllByAnimalCategoriaContainingIgnoreCase(String animalCategoria);
+ 
 }
