@@ -1,12 +1,18 @@
 package com.helppet.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "tb_categorias")
@@ -26,6 +32,11 @@ public class CategoriaModel {
 	@Column
 	@NotNull
 	private String animalCategoria;
+
+	// RELACIONAMENTO
+	@OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL)
+	@JsonIgnoreProperties("categoria")
+	private List<ProdutoModel> produto;
 
 	// Getters e Setters
 
@@ -61,4 +72,15 @@ public class CategoriaModel {
 		this.animalCategoria = animalCategoria;
 	}
 
+	//RELACIONAMENTO
+	public List<ProdutoModel> getProduto() {
+		return produto;
+	}
+
+	public void setProduto(List<ProdutoModel> produto) {
+		this.produto = produto;
+	}
+
+	
+	
 }
