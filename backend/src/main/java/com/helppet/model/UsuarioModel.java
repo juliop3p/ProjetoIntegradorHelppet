@@ -35,7 +35,7 @@ public class UsuarioModel {
 	private String cpfUsuario;
 	
 	@Column
-	private String telefoneUsario;
+	private String telefoneUsuario;
 	
 	@Column
 	private String enderecoUsuario;
@@ -85,12 +85,12 @@ public class UsuarioModel {
 		this.cpfUsuario = cpfUsuario;
 	}
 
-	public String getTelefoneUsario() {
-		return telefoneUsario;
+	public String getTelefoneUsuario() {
+		return telefoneUsuario;
 	}
 
-	public void setTelefoneUsario(String telefoneUsario) {
-		this.telefoneUsario = telefoneUsario;
+	public void setTelefoneUsuario(String telefoneUsuario) {
+		this.telefoneUsuario = telefoneUsuario;
 	}
 
 	public String getEnderecoUsuario() {

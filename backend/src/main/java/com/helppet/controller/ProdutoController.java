@@ -20,39 +20,46 @@ import com.helppet.repository.ProdutoRepository;
 
 @RestController
 @RequestMapping("/produtos")
-@CrossOrigin("*")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ProdutoController {
 	
 
 	@Autowired
 	private ProdutoRepository repository;
 
+	//MÉTODOS CRUD
+	// findAll - Retorna todos os Dados.
 	@GetMapping
 	public ResponseEntity<List<ProdutoModel>> findAll() {
 		return ResponseEntity.ok(repository.findAll());
 	}
 
+	// findById - Retorna o dado pelo ID.
 	@GetMapping("/{id}")
-	public ResponseEntity<ProdutoModel> GetById(@PathVariable Long id) {
+	public ResponseEntity<ProdutoModel> findById(@PathVariable Long id) {
 		return repository.findById(id).map(resp -> ResponseEntity.ok(resp)).orElse(ResponseEntity.notFound().build());
 	}
 
+	// findByNomeProduto - Retorna pelo nome.
 	@GetMapping("produto/{produto}")
-	public ResponseEntity<List<ProdutoModel>> GetByNomeProduto(@PathVariable String produto) {
+	public ResponseEntity<List<ProdutoModel>> findByNomeProduto(@PathVariable String produto) {
 		return ResponseEntity.ok(repository.findAllByNomeProdutoContainingIgnoreCase(produto));
 	}
 
+	// post - Cria um dado.
 	@PostMapping
 	public ResponseEntity<ProdutoModel> post(@RequestBody ProdutoModel produto) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(produto));
 	}
 
+	// put - Atualiza o dado.
 	@PutMapping("/{id}")
 	public ResponseEntity<ProdutoModel> put(@PathVariable Long id, @RequestBody ProdutoModel produto) {
 		produto.setIdProduto(id);
 		return ResponseEntity.status(HttpStatus.OK).body(repository.save(produto));
 	}
 
+	// delete - Deleta um dado.
 	@DeleteMapping("/{id}") 
 	public void delete(@PathVariable Long id) {
 		repository.deleteById(id);
