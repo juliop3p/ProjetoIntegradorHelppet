@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.helppet.model.UsuarioModel;
 import com.helppet.repository.UsuarioRepository;
+import com.helppet.service.UsuarioService;
 
 @RestController
 @RequestMapping("/usuarios")
@@ -25,6 +26,9 @@ public class UsuarioController {
 
 	@Autowired
 	private UsuarioRepository repository;
+	
+	@Autowired
+	private UsuarioService service;
 
 	//MÉTODOS CRUD
 	// findAll - Retorna todos os Dados.
@@ -38,13 +42,23 @@ public class UsuarioController {
 	public ResponseEntity<UsuarioModel> findByIdUsuario(@PathVariable Long id) {
 		return repository.findById(id).map(resp -> ResponseEntity.ok(resp)).orElse(ResponseEntity.notFound().build());
 	}
-
-	// post - Cria um dado.
-	@PostMapping
-	public ResponseEntity<UsuarioModel> post(@RequestBody UsuarioModel usuario) {
-		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(usuario));
+	
+	@GetMapping("/usuarioEmail/{usuarioEmail}")
+	public ResponseEntity<List<UsuarioModel>> findByUsuarioEmail(@PathVariable String emailUsuario) {
+		return ResponseEntity.ok(repository.findByEmailUsuario(emailUsuario));
 	}
 
+	// post - Cria um dado.
+	@PostMapping ("/cadastrar")
+	public ResponseEntity<UsuarioModel> post(@RequestBody UsuarioModel usuario) {
+		return ResponseEntity.status(HttpStatus.CREATED).body(service.CadastrarUsuario(usuario));
+	}
+	
+	@PostMapping ("/logar")
+	public ResponseEntity<UsuarioModel> authentication(@RequestBody UsuarioModel usuario) {
+		return ResponseEntity.status(HttpStatus.CREATED).body(service.(usuario));
+	}
+		
 	// put - Atualiza o dado.
 	@PutMapping("/{id}")
 	public ResponseEntity<UsuarioModel> put(@PathVariable Long id, @RequestBody UsuarioModel usuario) {
