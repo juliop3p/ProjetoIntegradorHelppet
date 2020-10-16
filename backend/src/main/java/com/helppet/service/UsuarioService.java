@@ -29,17 +29,17 @@ public class UsuarioService {
 	
 	 public Optional<UsuarioLoginModel> Login(Optional<UsuarioLoginModel> user){
 	        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-	        Optional<UsuarioModel> usuario = repository.findByUsuario(user.get().getSenha();
+	        Optional<UsuarioModel> usuario = repository.findByEmailUsuario(user.get().getSenha());
 
 	        if(usuario.isPresent()) {
-	            if(encoder.matches(user.get().getSenha(), usuario.get().getSenha())) {
+	            if(encoder.matches(user.get().getSenha(), usuario.get().getSenhaUsuario())) {
 
 	                String auth = user.get().getUsuario() + ":" + user.get().getSenha();
 	                byte[] encodedAuth = org.apache.tomcat.util.codec.binary.Base64.encodeBase64(auth.getBytes(Charset.forName("US-ASCII")));
 	                String authHeader ="Basic " + new String(encodedAuth);
 
 	                user.get().setToken(authHeader);
-	                user.get().setNome(usuario.get().getNome());
+	                user.get().setNome(usuario.get().getNomeUsuario());
 
 	                return user;
 

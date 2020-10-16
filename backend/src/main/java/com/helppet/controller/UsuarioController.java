@@ -1,6 +1,7 @@
 package com.helppet.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.helppet.model.UsuarioLoginModel;
 import com.helppet.model.UsuarioModel;
 import com.helppet.repository.UsuarioRepository;
 import com.helppet.service.UsuarioService;
@@ -26,11 +28,11 @@ public class UsuarioController {
 
 	@Autowired
 	private UsuarioRepository repository;
-	
+
 	@Autowired
 	private UsuarioService service;
 
-	//MÉTODOS CRUD
+	// MÉTODOS CRUD
 	// findAll - Retorna todos os Dados.
 	@GetMapping
 	public ResponseEntity<List<UsuarioModel>> findAll() {
@@ -42,23 +44,25 @@ public class UsuarioController {
 	public ResponseEntity<UsuarioModel> findByIdUsuario(@PathVariable Long id) {
 		return repository.findById(id).map(resp -> ResponseEntity.ok(resp)).orElse(ResponseEntity.notFound().build());
 	}
-	
+
 	@GetMapping("/usuarioEmail/{usuarioEmail}")
-	public ResponseEntity<List<UsuarioModel>> findByUsuarioEmail(@PathVariable String emailUsuario) {
+	public ResponseEntity<Optional<UsuarioModel>> findByUsuarioEmail(@PathVariable String emailUsuario) {
 		return ResponseEntity.ok(repository.findByEmailUsuario(emailUsuario));
 	}
 
 	// post - Cria um dado.
-	@PostMapping ("/cadastrar")
+	@PostMapping("/cadastrar")
 	public ResponseEntity<UsuarioModel> post(@RequestBody UsuarioModel usuario) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(service.CadastrarUsuario(usuario));
 	}
-	
-	@PostMapping ("/logar")
-	public ResponseEntity<UsuarioModel> authentication(@RequestBody UsuarioModel usuario) {
-		return ResponseEntity.status(HttpStatus.CREATED).body(service.(usuario));
+
+	@PostMapping("/logar")
+	public ResponseEntity<UsuarioLoginModel> Autentication(@RequestBody Optional<UsuarioLoginModel> usuario) {
+		return service.Login(usuario).map(resp -> ResponseEntity.ok(resp))
+				.orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
+
 	}
-		
+
 	// put - Atualiza o dado.
 	@PutMapping("/{id}")
 	public ResponseEntity<UsuarioModel> put(@PathVariable Long id, @RequestBody UsuarioModel usuario) {
