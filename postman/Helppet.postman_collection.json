@@ -48,13 +48,13 @@
 					"response": []
 				},
 				{
-					"name": "Post",
+					"name": "Cadastrar Usuario",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nomeUsuario\": \"Julio\",\r\n    \"emailUsuario\": \"julio@gmail.com\",\r\n    \"senhaUsuario\": \"123456\",\r\n    \"cpfUsuario\": \"99999999999999\",\r\n    \"telefoneUsario\": \"884545451\",\r\n    \"enderecoUsuario\": \"Rua das Alegrias 800A\",\r\n    \"dataNascimentoUsuario\": \"1999-12-17\"\r\n}",
+							"raw": "{\r\n    \"nomeUsuario\": \"Julio\",\r\n    \"emailUsuario\": \"julio@gmail.com\",\r\n    \"senhaUsuario\": \"123456\",\r\n    \"cpfUsuario\": \"99999999999999\",\r\n    \"telefoneUsuario\": \"884545451\",\r\n    \"enderecoUsuario\": \"Rua das Alegrias 800A\",\r\n    \"dataNascimentoUsuario\": \"1999-12-17\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -62,14 +62,44 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/usuarios",
+							"raw": "http://localhost:8080/usuarios/cadastrar",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"usuarios"
+								"usuarios",
+								"cadastrar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"usuario\": \"helppet@ecommerce.com\",\r\n    \"senha\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/usuarios/logar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios",
+								"logar"
 							]
 						}
 					},
@@ -134,7 +164,14 @@
 					"name": "FindAll",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
 						"url": {
 							"raw": "http://localhost:8080/categorias",
 							"protocol": "http",
@@ -217,7 +254,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/categorias/animalcategoria/cachorro",
+							"raw": "http://localhost:8080/categorias/animalcategoria/gato",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -226,7 +263,7 @@
 							"path": [
 								"categorias",
 								"animalcategoria",
-								"cachorro"
+								"gato"
 							]
 						}
 					},
@@ -235,11 +272,21 @@
 				{
 					"name": "Post",
 					"request": {
+						"auth": {
+							"type": "noauth"
+						},
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic aGVscHBldEBlY29tbWVyY2UuY29tOjEyMzQ1Ng==",
+								"type": "text",
+								"disabled": true
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"secaoCategoria\": \"Alimentação dfasdf\",\r\n    \"subSecaoCategoria\": \"Ração fsdafa\",\r\n    \"animalCategoria\": \"Gato\"\r\n}",
+							"raw": "{\r\n    \"secaoCategoria\": \"Alimentação\",\r\n    \"subSecaoCategoria\": \"Ração Golden\",\r\n    \"animalCategoria\": \"Cachorro\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -378,8 +425,17 @@
 				{
 					"name": "Post",
 					"request": {
+						"auth": {
+							"type": "noauth"
+						},
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic anVsaW9AZ21haWwuY29tOjEyMzQ1Ng==",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n    \"nomeProduto\": \"Ração Golden 2\",\r\n    \"precoProduto\": 149.99,\r\n    \"marcaProduto\": \"Golden\",\r\n    \"estoqueProduto\": 15,\r\n    \"descricaoProduto\": \"Buscando uma ração Premium de ótima qualidade para nutrir seu cãozinho? Conheça a ração Golden Special.\",\r\n    \"categoria\": {\r\n         \"idCategoria\": 1\r\n    }\r\n}",
