@@ -56,6 +56,7 @@ public class UsuarioController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(service.CadastrarUsuario(usuario));
 	}
 
+	// post - login usuário.
 	@PostMapping("/logar")
 	public ResponseEntity<UsuarioLoginModel> Autentication(@RequestBody Optional<UsuarioLoginModel> usuario) {
 		return service.Login(usuario).map(resp -> ResponseEntity.ok(resp))

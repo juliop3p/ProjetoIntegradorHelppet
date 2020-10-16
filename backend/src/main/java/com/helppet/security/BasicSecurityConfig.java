@@ -2,6 +2,7 @@ package com.helppet.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -21,6 +22,8 @@ public class BasicSecurityConfig extends WebSecurityConfigurerAdapter{
 		
 		auth.userDetailsService(userDetailsService);
 		
+		// auth.inMemoryAuthentication().withUser("helppet@ecommerce.com").password("123456").roles("admin");
+		
 	}
 	
 	@Bean
@@ -34,6 +37,14 @@ public class BasicSecurityConfig extends WebSecurityConfigurerAdapter{
 		http.authorizeRequests()
 		.antMatchers("/usuarios/logar").permitAll()
 		.antMatchers("/usuarios/cadastrar").permitAll()
+		.antMatchers(HttpMethod.GET, "/produtos").permitAll()
+		.antMatchers(HttpMethod.GET, "/produtos/{id}").permitAll()
+		.antMatchers(HttpMethod.GET, "/produtos/produto/{produto}").permitAll()
+		.antMatchers(HttpMethod.GET, "/categorias").permitAll()
+		.antMatchers(HttpMethod.GET, "/categorias/{id}").permitAll()
+		.antMatchers(HttpMethod.GET, "/categorias/secaocategoria/{secaocategoria}").permitAll()
+		.antMatchers(HttpMethod.GET, "/categorias/subsecaocategoria/{subsecaocategoria}").permitAll()
+		.antMatchers(HttpMethod.GET, "/categorias/animalcategoria/{animalcategoria}").permitAll()
 		.anyRequest().authenticated()
 		.and().httpBasic()
 		.and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
