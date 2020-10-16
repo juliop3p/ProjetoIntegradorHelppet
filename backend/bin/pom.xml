@@ -54,6 +54,20 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		
+		<!-- Documenta a API Rest -->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>2.9.2</version>
+		</dependency>
+		<!-- Gera a interface gráfica para a documentação -->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>2.9.2</version>
+		</dependency>
+		
 	</dependencies>
 
 	<build>
