@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
@@ -22,7 +23,7 @@ public class UsuarioModel {
 	@NotNull
 	private String nomeUsuario;
 
-	@Column
+	@Column(unique = true)
 	@NotNull
 	@Email
 	private String emailUsuario;
@@ -30,21 +31,25 @@ public class UsuarioModel {
 	@Column
 	@NotNull
 	private String senhaUsuario;
-	
-	@Column
+
+	@Column(unique = true)
 	private String cpfUsuario;
-	
+
 	@Column
 	private String telefoneUsuario;
-	
+
 	@Column
 	private String enderecoUsuario;
-	
+
 	@Column
 	private Date dataNascimentoUsuario;
 
+	@Column
+	@NotNull
+	private boolean admin;
+
 	// Getters e Setters
-	
+
 	public Long getIdUsuario() {
 		return idUsuario;
 	}
@@ -107,6 +112,14 @@ public class UsuarioModel {
 
 	public void setDataNascimentoUsuario(Date dataNascimentoUsuario) {
 		this.dataNascimentoUsuario = dataNascimentoUsuario;
+	}
+
+	public boolean isAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
 	}
 
 }

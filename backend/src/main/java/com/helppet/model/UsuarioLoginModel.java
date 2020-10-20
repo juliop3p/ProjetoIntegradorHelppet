@@ -8,8 +8,9 @@ public class UsuarioLoginModel {
 
 	private String senha;
 
+	private boolean admin;
+
 	private String token;
-	
 
 	public String getNome() {
 		return nome;
@@ -41,6 +42,14 @@ public class UsuarioLoginModel {
 
 	public void setToken(String token) {
 		this.token = token;
+	}
+
+	public boolean isAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
 	}
 
 }
