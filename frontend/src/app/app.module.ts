@@ -10,6 +10,7 @@ import { CarrinhoComponent } from './pages/carrinho/carrinho.component';
 import { SobreComponent } from './pages/sobre/sobre.component';
 import { ProdutoComponent } from './pages/produto/produto.component';
 import { CardItemComponent } from './components/card-item/card-item.component';
+import { CarrinhoItemComponent } from './components/carrinho-item/carrinho-item.component';
 
 @NgModule({
   declarations: [
@@ -20,13 +21,11 @@ import { CardItemComponent } from './components/card-item/card-item.component';
     CarrinhoComponent,
     SobreComponent,
     ProdutoComponent,
-    CardItemComponent
+    CardItemComponent,
+    CarrinhoItemComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  imports: [BrowserModule, AppRoutingModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
