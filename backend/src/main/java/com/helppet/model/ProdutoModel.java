@@ -33,6 +33,10 @@ public class ProdutoModel {
 
 	@Column
 	@NotNull
+	private String imagemProduto;
+
+	@Column
+	@NotNull
 	private int estoqueProduto;
 
 	@Column
@@ -78,6 +82,14 @@ public class ProdutoModel {
 		this.marcaProduto = marcaProduto;
 	}
 
+	public String getImagemProduto() {
+		return imagemProduto;
+	}
+
+	public void setImagemProduto(String imagemProduto) {
+		this.imagemProduto = imagemProduto;
+	}
+
 	public int getEstoqueProduto() {
 		return estoqueProduto;
 	}
@@ -94,7 +106,7 @@ public class ProdutoModel {
 		this.descricaoProduto = descricaoProduto;
 	}
 
-	//RELACIONAMENTO
+	// RELACIONAMENTO
 	public CategoriaModel getCategoria() {
 		return categoria;
 	}
@@ -103,5 +115,4 @@ public class ProdutoModel {
 		this.categoria = categoria;
 	}
 
-	
 }

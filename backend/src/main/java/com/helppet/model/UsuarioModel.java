@@ -42,7 +42,7 @@ public class UsuarioModel {
 	private String enderecoUsuario;
 
 	@Column
-	private Date dataNascimentoUsuario;
+	private String dataNascimentoUsuario;
 
 	@Column
 	@NotNull
@@ -106,11 +106,11 @@ public class UsuarioModel {
 		this.enderecoUsuario = enderecoUsuario;
 	}
 
-	public Date getDataNascimentoUsuario() {
+	public String getDataNascimentoUsuario() {
 		return dataNascimentoUsuario;
 	}
 
-	public void setDataNascimentoUsuario(Date dataNascimentoUsuario) {
+	public void setDataNascimentoUsuario(String dataNascimentoUsuario) {
 		this.dataNascimentoUsuario = dataNascimentoUsuario;
 	}
 
